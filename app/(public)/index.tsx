@@ -2,15 +2,12 @@ import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native'
 import Text from '@/components/ui/Text'
 import { Link } from 'expo-router'
 import ToggleTheme from '@/components/toggle-theme'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const MainScreen: React.FC = () => {
-  const { top } = useSafeAreaInsets()
-
   return (
     <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
-      <View className='relative bg-red-200'>
-        <ToggleTheme className={`absolute top-${top} right-4 z-10`} />
+      <View className='relative px-4 justify-end items-end'>
+        <ToggleTheme />
       </View>
       <View className="flex-1 items-center justify-center">
         <Text variant="h1" weight="bold" className="text-7xl text-white leading-snug">Ellinglish</Text>
