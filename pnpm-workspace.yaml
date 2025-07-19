@@ -1,2 +1,10 @@
 onlyBuiltDependencies:
   - '@sentry/cli'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - sharp
+
+publicHoistPattern:
+  - '*expo-modules-core'
+  - '*expo-modules-autolinking'
+  - '*babel-preset-expo'
