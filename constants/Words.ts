@@ -41,6 +41,21 @@ export const WORDS: WordPair[] = [
   { word: 'Mountain', answer: 'Montagne', direction: 'en-fr' },
   { word: 'River', answer: 'Riviere', direction: 'en-fr' },
   { word: 'Forest', answer: 'Foret', direction: 'en-fr' },
+  { word: 'Beach', answer: 'Plage', direction: 'en-fr' },
+  { word: 'Snow', answer: 'Neige', direction: 'en-fr' },
+  { word: 'Rain', answer: 'Pluie', direction: 'en-fr' },
+  { word: 'Wind', answer: 'Vent', direction: 'en-fr' },
+  { word: 'Fire', answer: 'Feu', direction: 'en-fr' },
+  { word: 'Earth', answer: 'Terre', direction: 'en-fr' },
+  { word: 'Star', answer: 'Etoile', direction: 'en-fr' },
+  { word: 'Bird', answer: 'Oiseau', direction: 'en-fr' },
+  { word: 'Fish', answer: 'Poisson', direction: 'en-fr' },
+  { word: 'Bear', answer: 'Ours', direction: 'en-fr' },
+  { word: 'Lion', answer: 'Lion', direction: 'en-fr' },
+  { word: 'Tiger', answer: 'Tigre', direction: 'en-fr' },
+  { word: 'Elephant', answer: 'Elephant', direction: 'en-fr' },
+  { word: 'Monkey', answer: 'Singe', direction: 'en-fr' },
+  { word: 'Snake', answer: 'Serpent', direction: 'en-fr' },
 
   // French to English
   { word: 'Bonjour', answer: 'Hello', direction: 'fr-en' },
@@ -77,7 +92,22 @@ export const WORDS: WordPair[] = [
   { word: 'Arbre', answer: 'Tree', direction: 'fr-en' },
   { word: 'Maison', answer: 'House', direction: 'fr-en' },
   { word: 'Voiture', answer: 'Car', direction: 'fr-en' },
-  { word: 'Velo', answer: 'Bicycle', direction: 'fr-en' }
+  { word: 'Velo', answer: 'Bicycle', direction: 'fr-en' },
+  { word: 'Chapeau', answer: 'Hat', direction: 'fr-en' },
+  { word: 'Chemise', answer: 'Shirt', direction: 'fr-en' },
+  { word: 'Pantalon', answer: 'Pants', direction: 'fr-en' },
+  { word: 'Chaussure', answer: 'Shoe', direction: 'fr-en' },
+  { word: 'Robe', answer: 'Dress', direction: 'fr-en' },
+  { word: 'Manteau', answer: 'Coat', direction: 'fr-en' },
+  { word: 'Cuisine', answer: 'Kitchen', direction: 'fr-en' },
+  { word: 'Chambre', answer: 'Bedroom', direction: 'fr-en' },
+  { word: 'Salle', answer: 'Room', direction: 'fr-en' },
+  { word: 'Bureau', answer: 'Office', direction: 'fr-en' },
+  { word: 'Plage', answer: 'Beach', direction: 'fr-en' },
+  { word: 'Parc', answer: 'Park', direction: 'fr-en' },
+  { word: 'Rue', answer: 'Street', direction: 'fr-en' },
+  { word: 'Place', answer: 'Square', direction: 'fr-en' },
+  { word: 'Pont', answer: 'Bridge', direction: 'fr-en' }
 ]
 
 export const getRandomWord = (): WordPair => {

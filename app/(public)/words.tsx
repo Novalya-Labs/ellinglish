@@ -10,10 +10,12 @@ const WordsScreen: React.FC = () => {
   const { isDarkMode } = useTheme()
   const confettiRef = useRef<ConfettiMethods>(null);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const shakeAnim = useRef(new Animated.Value(0)).current;
 
   const [inputText, setInputText] = useState('')
   const [currentWord, setCurrentWord] = useState<WordPair>(getRandomWord())
   const [streak, setStreak] = useState(0)
+  const [isError, setIsError] = useState(false)
 
   const handleNextWord = () => {
     Animated.sequence([
@@ -34,6 +36,20 @@ const WordsScreen: React.FC = () => {
     }, 200);
   }
 
+  const handleError = () => {
+    setIsError(true)
+    
+    Animated.sequence([
+      Animated.timing(shakeAnim, { toValue: 10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -10, duration: 100, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 0, duration: 100, useNativeDriver: true }),
+    ]).start(() => {
+      setIsError(false)
+    });
+  }
+
   useEffect(() => {
     const userAnswer = normalizeText(inputText)
     const correctAnswer = normalizeText(currentWord.answer)
@@ -48,6 +64,7 @@ const WordsScreen: React.FC = () => {
       handleNextWord()
     } else if (answerLength === correctAnswerLength) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
+      handleError()
       setInputText('')
     }
   }, [inputText, currentWord])
@@ -75,8 +92,16 @@ const WordsScreen: React.FC = () => {
           className="flex-1"
         >
           <View className="flex-1 items-center justify-center gap-4 px-4">
-            <Animated.View style={{ opacity: fadeAnim }}>
-              <Text variant="h1" weight="bold" className="text-7xl text-white leading-snug text-center">
+            <Animated.View style={{ 
+              opacity: fadeAnim,
+              transform: [{ translateX: shakeAnim }]
+            }}>
+              <Text 
+                variant="h1" 
+                weight="bold" 
+                className="text-7xl leading-snug text-center"
+                style={{ color: isError ? '#ef4444' : 'white' }}
+              >
                 {currentWord.word}
               </Text>
             </Animated.View>
