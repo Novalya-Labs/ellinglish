@@ -10,7 +10,7 @@ const config: ExpoConfig = {
   userInterfaceStyle: 'automatic',
   newArchEnabled: true,
   updates: {
-    url: 'https://u.expo.dev/16883200-fab1-4afd-b330-7c2b8191316f',
+    url: 'https://u.expo.dev/74012443-337d-4972-a8b8-e7efcae00afa',
   },
   runtimeVersion: {
     policy: 'appVersion',
@@ -26,7 +26,7 @@ const config: ExpoConfig = {
     edgeToEdgeEnabled: true,
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#e0ecf3',
+      backgroundColor: '#ffd1e9',
     },
     package: 'com.ellinglish.app',
   },
@@ -44,7 +44,7 @@ const config: ExpoConfig = {
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#e0ecf3',
+        backgroundColor: '#ffd1e9',
       },
     ],
     [
@@ -67,7 +67,7 @@ const config: ExpoConfig = {
   },
   extra: {
     eas: {
-      projectId: '16883200-fab1-4afd-b330-7c2b8191316f',
+      projectId: '74012443-337d-4972-a8b8-e7efcae00afa',
     },
   },
   owner: 'novalya',
