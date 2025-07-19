@@ -38,7 +38,7 @@ const WordsScreen: React.FC = () => {
     const correctAnswer = normalizeText(currentWord.answer)
     
     if (userAnswer && userAnswer === correctAnswer) {
-      confettiRef.current?.restart()
+      // confettiRef.current?.restart()
       setStreak(prev => prev + 1)
       setInputText('')
       handleNextWord()
@@ -71,7 +71,7 @@ const WordsScreen: React.FC = () => {
               </Text>
             </Animated.View>
             <TextInput 
-              className="bg-white dark:bg-white rounded-full py-4 px-8 mt-4 active:scale-95 transition-all duration-300 min-w-full" 
+              className="bg-white dark:bg-white rounded-full py-4 px-8 mt-4 active:scale-95 transition-all duration-300 max-w-md" 
               placeholder="Enter your answer" 
               placeholderTextColor={isDarkMode ? '#581c87' : '#fbcfe8'} 
               style={{ color: isDarkMode ? '#581c87' : '#fbcfe8' }}
