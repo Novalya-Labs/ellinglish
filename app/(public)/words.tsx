@@ -65,6 +65,7 @@ const WordsScreen: React.FC = () => {
     } else if (answerLength === correctAnswerLength) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
       handleError()
+      setStreak(0)
       setInputText('')
     }
   }, [inputText, currentWord])
@@ -72,18 +73,10 @@ const WordsScreen: React.FC = () => {
   return (
     <>
       <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
-        <View className='relative flex-row items-center justify-between px-4'>
-          <View className='w-[20%]'>
-            <Text variant="h1" weight="bold" className="text-lg text-white">
-              🔥 {streak}
-            </Text>
-          </View>
-          <View className='flex-row gap-4 items-center justify-center'>
-            <Image source={require('@/assets/images/flowers/lilac_flower.png')} className="w-8 h-8" />
-            <Text variant="h1" weight="bold" className="text-xl text-white">Ellinglish</Text>
-            <Image source={require('@/assets/images/flowers/yellow_flower.png')} className="w-8 h-8" />
-          </View>
-          <View className='w-[20%]' />
+        <View className='relative flex-row items-center justify-center px-4'>
+          <Text variant="h1" weight="bold" className="text-lg text-white">
+            🔥 {streak}
+          </Text>
         </View>
         
         <KeyboardAvoidingView 
@@ -106,11 +99,13 @@ const WordsScreen: React.FC = () => {
               </Text>
             </Animated.View>
             <TextInput 
-              className="bg-white dark:bg-white rounded-full py-4 px-8 mt-4 active:scale-95 transition-all duration-300 w-md max-w-lg text-center" 
+              className="bg-white dark:bg-white rounded-full py-6 px-8 mt-4 active:scale-95 transition-all duration-300 w-md max-w-lg text-center" 
               placeholder="Enter your answer" 
               placeholderTextColor={isDarkMode ? '#581c87' : '#fbcfe8'} 
               style={{ color: isDarkMode ? '#581c87' : '#fbcfe8' }}
               autoFocus
+              autoCorrect={false}
+              autoComplete='off'
               value={inputText}
               onChangeText={setInputText}
             />
