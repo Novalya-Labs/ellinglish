@@ -1,0 +1,11 @@
+{
+  "hello": "Hello, {{name}}",
+  "searchPlaceholder": "Search everything",
+  "latestPatients": "Latest patients",
+  "articles": "Articles",
+  "videos": "Videos",
+  "trainings": "Trainings",
+  "noArticlesSubtitle": "No articles found",
+  "noVideosSubtitle": "No videos found",
+  "noTrainingsSubtitle": "No trainings found"
+}

@@ -1,0 +1,11 @@
+{
+  "hello": "Bonjour, {{name}}",
+  "searchPlaceholder": "Rechercher tout",
+  "latestPatients": "Derniers patients",
+  "articles": "Articles",
+  "videos": "Vidéos",
+  "trainings": "Formations",
+  "noArticlesSubtitle": "Aucun article trouvé",
+  "noVideosSubtitle": "Aucun vidéo trouvé",
+  "noTrainingsSubtitle": "Aucune formation trouvée"
+}
