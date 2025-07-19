@@ -14,6 +14,15 @@ import { ThemeProvider, useTheme } from '@/contexts/theme-context';
 import { useProfileStore } from '@/features/profile/profileStore';
 import '../global.css'; 
 import 'react-native-reanimated';
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://2e7de021c4f59649f6ecb856721167e1@o4509637018189824.ingest.de.sentry.io/4509697546780752',
+  sendDefaultPii: true,
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1,
+  integrations: [Sentry.mobileReplayIntegration()],
+});
 import '@/i18n'; 
 
 SplashScreen.preventAutoHideAsync();
@@ -74,4 +83,4 @@ const RootLayout = () => {
   );
 };
 
-export default RootLayout;
+export default Sentry.wrap(RootLayout);

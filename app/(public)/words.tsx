@@ -1,4 +1,4 @@
-import { Image, KeyboardAvoidingView, Platform, SafeAreaView, TextInput, View, Animated } from 'react-native'
+import { KeyboardAvoidingView, Platform, SafeAreaView, TextInput, View, Animated } from 'react-native'
 import Text from '@/components/ui/Text'
 import { useTheme } from '@/contexts/theme-context'
 import { Confetti, ConfettiMethods } from 'react-native-fast-confetti';
@@ -81,7 +81,6 @@ const WordsScreen: React.FC = () => {
         
         <KeyboardAvoidingView 
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
           className="flex-1"
         >
           <View className="flex-1 items-center justify-center gap-4 px-4">

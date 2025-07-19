@@ -60,6 +60,14 @@ const config: ExpoConfig = {
         launchMode: 'most-recent',
       },
     ],
+    [
+      "@sentry/react-native/expo",
+      {
+        url: "https://sentry.io/",
+        project: "ellinglish",
+        organization: "novalya"
+      }
+    ]
   ],
   experiments: {
     typedRoutes: true,

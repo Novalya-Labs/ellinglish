@@ -55,3 +55,4 @@ mcp.json
 # OpenNext
 .open-next/
 .wrangler/
+.env.local
