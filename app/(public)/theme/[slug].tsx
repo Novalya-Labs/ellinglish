@@ -14,7 +14,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { Confetti, type ConfettiMethods } from 'react-native-fast-confetti';
 import {
   Gesture,
   GestureDetector,
@@ -56,7 +55,6 @@ const ThemeGameScreen = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [hasTriggeredHaptic, setHasTriggeredHaptic] = useState(false);
 
-  const confettiRef = useRef<ConfettiMethods>(null);
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const shakeAnim = useMemo(() => new Animated.Value(0), []);
   const swipeX = useRef(new Animated.Value(0)).current;
@@ -386,7 +384,6 @@ const ThemeGameScreen = () => {
           </GestureDetector>
         </KeyboardAvoidingView>
       </SafeAreaView>
-      <Confetti ref={confettiRef} count={200} fallDuration={3000} blastDuration={1000} autoplay={false} />
     </GestureHandlerRootView>
   );
 };
