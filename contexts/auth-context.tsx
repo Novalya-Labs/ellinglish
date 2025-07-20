@@ -4,11 +4,13 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { Env } from '@/constants/Env';
+import { useProfileStore } from '@/features/profile/profileStore';
 import { supabase } from '@/lib/supabase';
 
 GoogleSignin.configure({
   webClientId: Env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
   iosClientId: Env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
+  scopes: ['profile', 'email'],
 });
 
 type AuthContextType = {
@@ -26,6 +28,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const { reset: resetProfile, getProfile } = useProfileStore();
 
   useEffect(() => {
     const getSession = async () => {
@@ -40,15 +43,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     getSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
+
+      if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+        getProfile();
+      }
     });
 
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, []);
+  }, [getProfile]);
 
   const value = {
     user,
@@ -65,6 +72,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               provider: 'google',
               token: idToken,
             });
+
             if (error) {
               throw new Error('Error signing in with Google', { cause: error });
             }
@@ -105,6 +113,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     },
     signOut: async () => {
       try {
+        resetProfile();
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
         if (Platform.OS !== 'web') {

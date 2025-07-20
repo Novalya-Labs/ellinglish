@@ -5,10 +5,12 @@ import { Image, Platform, SafeAreaView, TouchableOpacity, View } from 'react-nat
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/auth-context';
+import { useTheme } from '@/contexts/theme-context';
 
 const MainScreen: React.FC = () => {
   const { user, signInWithGoogle, signInWithApple } = useAuth();
   const { top } = useSafeAreaInsets();
+  const { isDarkMode } = useTheme();
 
   return (
     <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
@@ -58,7 +60,7 @@ const MainScreen: React.FC = () => {
               activeOpacity={1}
               className="w-full max-w-sm flex-row items-center justify-center gap-2 bg-white dark:bg-white rounded-full py-4 px-8 active:scale-95 transition-all duration-300"
             >
-              <Ionicons name="logo-google" size={18} color="black" />
+              <Ionicons name="logo-google" size={18} color={isDarkMode ? '#581c87' : '#fbcfe8'} />
               <Text weight="bold" className="text-pink-200 dark:text-purple-900 text-center">
                 Sign in with Google
               </Text>
@@ -72,7 +74,7 @@ const MainScreen: React.FC = () => {
                 activeOpacity={1}
                 className="w-full max-w-sm flex-row items-center justify-center gap-2 bg-white dark:bg-white rounded-full py-4 px-8 active:scale-95 transition-all duration-300"
               >
-                <Ionicons name="logo-apple" size={18} color="black" />
+                <Ionicons name="logo-apple" size={18} color={isDarkMode ? '#581c87' : '#fbcfe8'} />
 
                 <Text weight="bold" className="text-pink-200 dark:text-purple-900 text-center">
                   Sign in with Apple
