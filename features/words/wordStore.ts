@@ -10,6 +10,7 @@ export const initialGameState: GameState = {
   words: [],
   currentWordIndex: 0,
   score: 0,
+  streak: 0,
   loading: true,
 };
 
@@ -39,13 +40,17 @@ export const useGameStore = create<GameStore>()(
           updateWordProgress(payload).catch(console.error);
         }
 
-        set({ score: get().score + 1 });
+        set({ score: get().score + 1, streak: get().streak + 1 });
         get().nextWord();
       },
 
       answerIncorrectly: (payload) => {
-        // Logic for incorrect answer (e.g., reset streak) can be added here
         updateWordProgress(payload).catch(console.error);
+        set({ streak: 0 });
+      },
+
+      skipWord: () => {
+        set({ streak: 0 });
         get().nextWord();
       },
 

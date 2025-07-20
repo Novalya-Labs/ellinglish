@@ -11,6 +11,7 @@ export type GameState = {
   words: Word[];
   currentWordIndex: number;
   score: number;
+  streak: number;
   loading: boolean;
 };
 
@@ -18,6 +19,7 @@ export type GameActions = {
   fetchWords: (payload: GetWordsByThemePayload) => Promise<void>;
   answerCorrectly: (payload: UpdateWordProgressPayload) => void;
   answerIncorrectly: (payload: UpdateWordProgressPayload) => void;
+  skipWord: () => void;
   nextWord: () => void;
   resetGame: () => void;
 };
