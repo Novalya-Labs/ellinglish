@@ -1,4 +1,4 @@
-import { router, Slot } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useAuth } from '@/contexts/auth-context';
 import { useProfileStore } from '@/features/profile/profileStore';
@@ -13,9 +13,15 @@ export default function PublicLayout() {
 
   useEffect(() => {
     if (user && profile && profile.username.startsWith('user_')) {
-      router.replace('/(public)/onboarding');
+      router.replace('/(public)/profile/onboarding');
     }
   }, [user, profile]);
 
-  return <Slot />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="profile" />
+      <Stack.Screen name="theme/[slug]" options={{ animation: 'fade' }} />
+    </Stack>
+  );
 }

@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
-import { LockIcon, LogOutIcon } from 'lucide-react-native';
+import { ArrowLeftIcon, LockIcon, LogOutIcon } from 'lucide-react-native';
 import { useCallback, useEffect } from 'react';
-import { Alert, FlatList, Image, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, Image, Pressable, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import ToggleTheme from '@/components/toggle-theme';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/auth-context';
@@ -32,11 +32,16 @@ const ProfileScreen = () => {
     ]);
   }, [signOut, router]);
 
-  return (
-    <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900">
-      <View className="p-4">
+  const renderHeader = useCallback(() => {
+    return (
+      <View>
         <View className="flex-row justify-between items-center mb-10">
-          <Text variant="h1">Profile</Text>
+          <View className="flex-row items-center">
+            <Pressable onPress={() => router.back()} className="active:scale-95 transition-all duration-300 pr-6">
+              <ArrowLeftIcon size={24} color={isDarkMode ? 'white' : 'black'} strokeWidth={4} />
+            </Pressable>
+            <Text variant="h1">Profile</Text>
+          </View>
           {profile && (
             <TouchableOpacity
               onPress={handleSignOut}
@@ -61,31 +66,36 @@ const ProfileScreen = () => {
             </View>
           </View>
         )}
-
-        <View className="mt-8">
+        <View>
           <Text variant="h2" className="mb-4">
             Badges
           </Text>
-          <FlatList
-            data={profile?.badges || []}
-            keyExtractor={(item) => item.id.toString()}
-            style={{ flexGrow: 1 }}
-            contentContainerStyle={{ gap: 10 }}
-            renderItem={({ item }) => (
-              <View className="items-center p-4 rounded-lg relative border border-pink-300 dark:border-purple-200 bg-white/60 dark:bg-purple-900/80">
-                <Text className="text-4xl mb-2 leading-snug">{item.icon}</Text>
-                <Text className="text-sm text-center mb-1 text-pink-900 dark:text-purple-200">{item.name}</Text>
-                <Text className="text-xs text-center text-pink-700 dark:text-purple-200">{item.description}</Text>
-                {!item.unlocked && (
-                  <View className="absolute top-2 right-2">
-                    <LockIcon size={18} color={isDarkMode ? 'white' : 'black'} strokeWidth={2} />
-                  </View>
-                )}
-              </View>
-            )}
-          />
         </View>
       </View>
+    );
+  }, [profile, isDarkMode, handleSignOut, router]);
+
+  return (
+    <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900">
+      <FlatList
+        data={profile?.badges || []}
+        keyExtractor={(item) => item.id.toString()}
+        style={{ flexGrow: 1 }}
+        contentContainerStyle={{ gap: 10, paddingHorizontal: 16 }}
+        ListHeaderComponent={renderHeader}
+        renderItem={({ item }) => (
+          <View className="items-center p-4 rounded-lg relative border border-pink-300 dark:border-purple-200 bg-white/60 dark:bg-purple-900/80">
+            <Text className="text-4xl mb-2 leading-snug">{item.icon}</Text>
+            <Text className="text-sm text-center mb-1 text-pink-900 dark:text-purple-200">{item.name}</Text>
+            <Text className="text-xs text-center text-pink-700 dark:text-purple-200">{item.description}</Text>
+            {!item.unlocked && (
+              <View className="absolute top-2 right-2">
+                <LockIcon size={18} color={isDarkMode ? 'white' : 'black'} strokeWidth={2} />
+              </View>
+            )}
+          </View>
+        )}
+      />
     </SafeAreaView>
   );
 };
