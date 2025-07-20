@@ -1,10 +1,11 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import type { Session, User } from '@supabase/supabase-js';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { Env } from '@/constants/Env';
 import { useProfileStore } from '@/features/profile/profileStore';
+import { secureStorage } from '@/lib/secure-storage';
 import { supabase } from '@/lib/supabase';
 
 GoogleSignin.configure({
@@ -12,6 +13,9 @@ GoogleSignin.configure({
   iosClientId: Env.GOOGLE_IOS_CLIENT_ID,
   scopes: ['profile', 'email'],
 });
+
+const USER_STORAGE_KEY = 'auth_user';
+const SESSION_STORAGE_KEY = 'auth_session';
 
 type AuthContextType = {
   user: User | null;
@@ -30,32 +34,87 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const { reset: resetProfile, getProfile } = useProfileStore();
 
+  const saveAuthState = useCallback(async (user: User | null, session: Session | null) => {
+    try {
+      if (user && session) {
+        await secureStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+        await secureStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+      } else {
+        await secureStorage.removeItem(USER_STORAGE_KEY);
+        await secureStorage.removeItem(SESSION_STORAGE_KEY);
+      }
+    } catch (error) {
+      console.error('Error saving auth state:', error);
+    }
+  }, []);
+
+  const restoreAuthState = useCallback(async () => {
+    try {
+      const savedUser = await secureStorage.getItem(USER_STORAGE_KEY);
+      const savedSession = await secureStorage.getItem(SESSION_STORAGE_KEY);
+
+      if (savedUser && savedSession) {
+        const parsedUser = JSON.parse(savedUser) as User;
+        const parsedSession = JSON.parse(savedSession) as Session;
+
+        setUser(parsedUser);
+        setSession(parsedSession);
+        getProfile();
+      }
+    } catch (error) {
+      console.error('Error restoring auth state:', error);
+    }
+  }, [getProfile]);
+
   useEffect(() => {
-    const getSession = async () => {
+    const initializeAuth = async () => {
+      await restoreAuthState();
+
       const { data, error } = await supabase.auth.getSession();
       if (error) {
         console.error('Error getting session:', error);
+        await saveAuthState(null, null);
+        setUser(null);
+        setSession(null);
+      } else {
+        const currentUser = data.session?.user ?? null;
+        const currentSession = data.session;
+
+        setSession(currentSession);
+        setUser(currentUser);
+
+        if (currentUser && currentSession) {
+          await saveAuthState(currentUser, currentSession);
+          getProfile();
+        } else {
+          await saveAuthState(null, null);
+        }
       }
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
+
       setLoading(false);
     };
 
-    getSession();
+    initializeAuth();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      const currentUser = session?.user ?? null;
+
       setSession(session);
-      setUser(session?.user ?? null);
+      setUser(currentUser);
+
+      await saveAuthState(currentUser, session);
 
       if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
         getProfile();
+      } else if (event === 'SIGNED_OUT' || (event === 'TOKEN_REFRESHED' && !session)) {
+        resetProfile();
       }
     });
 
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, [getProfile]);
+  }, [getProfile, resetProfile, restoreAuthState, saveAuthState]);
 
   const value = {
     user,
@@ -114,6 +173,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signOut: async () => {
       try {
         resetProfile();
+        await saveAuthState(null, null);
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
         if (Platform.OS !== 'web') {
