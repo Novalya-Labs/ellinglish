@@ -18,8 +18,9 @@
     "test": "jest --watchAll",
     "lint": "biome check --write",
     "format": "biome format --write",
-    "prebuild": "npx expo prebuild",
-    "clean": "rm -fr .expo node_modules dist ios android"
+    "prebuild": "npx expo prebuild --clean",
+    "clean": "rm -fr .expo node_modules dist ios android",
+    "generate:types": "supabase gen types typescript --project-id aedpsrscbzezfcxcyrnl > types/database.types.ts"
   },
   "jest": {
     "preset": "jest-expo"
@@ -31,6 +32,7 @@
     "@gorhom/bottom-sheet": "^5",
     "@hookform/resolvers": "^5.1.1",
     "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-google-signin/google-signin": "^15.0.0",
     "@react-native-picker/picker": "^2.11.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
@@ -40,6 +42,8 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "date-fns": "^4.1.0",
     "expo": "~53.0.20",
+    "expo-apple-authentication": "~7.2.4",
+    "expo-auth-session": "^6.2.1",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.7",
     "expo-dev-client": "~5.2.4",

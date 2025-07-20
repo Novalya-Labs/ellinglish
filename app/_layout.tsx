@@ -17,6 +17,7 @@ import 'react-native-reanimated';
 import * as Sentry from '@sentry/react-native';
 import { version } from '@/package.json';
 import '@/i18n';
+import { AuthProvider } from '@/contexts/auth-context';
 
 Sentry.init({
   dsn: 'https://2e7de021c4f59649f6ecb856721167e1@o4509637018189824.ingest.de.sentry.io/4509697546780752',
@@ -77,7 +78,9 @@ const RootLayout = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
         <ThemeProvider>
-          <InternalRootLayout />
+          <AuthProvider>
+            <InternalRootLayout />
+          </AuthProvider>
           <Toasts />
         </ThemeProvider>
       </BottomSheetModalProvider>

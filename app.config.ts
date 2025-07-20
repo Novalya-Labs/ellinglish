@@ -17,6 +17,7 @@ const config: ExpoConfig = {
   },
   ios: {
     supportsTablet: true,
+    usesAppleSignIn: true,
     bundleIdentifier: 'com.ellinglish.app',
     config: {
       usesNonExemptEncryption: false,
@@ -38,6 +39,13 @@ const config: ExpoConfig = {
   plugins: [
     'expo-router',
     'expo-web-browser',
+    'expo-apple-authentication',
+    [
+      '@react-native-google-signin/google-signin',
+      {
+        iosUrlScheme: 'com.googleusercontent.apps.285065587686-s9bebp74gpbjo1n0vsae2njt0iqrh9fa',
+      },
+    ],
     [
       'expo-splash-screen',
       {
