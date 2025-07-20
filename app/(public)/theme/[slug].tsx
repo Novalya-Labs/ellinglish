@@ -63,6 +63,7 @@ const ThemeGameScreen = () => {
   const swipeY = useRef(new Animated.Value(0)).current;
   const streakScale = useRef(new Animated.Value(1)).current;
   const inactivityTimer = useRef<number | null>(null);
+  const successTimer = useRef<number | null>(null);
   const prevStreak = useRef(0);
 
   const SWIPE_THRESHOLD = -width * 0.4;
@@ -133,9 +134,27 @@ const ThemeGameScreen = () => {
     });
   }, [navigation, resetGame]);
 
+  useEffect(() => {
+    return () => {
+      if (inactivityTimer.current) {
+        clearTimeout(inactivityTimer.current);
+      }
+      if (successTimer.current) {
+        clearTimeout(successTimer.current);
+      }
+      fadeAnim.stopAnimation();
+      shakeAnim.stopAnimation();
+      swipeX.stopAnimation();
+      swipeY.stopAnimation();
+      streakScale.stopAnimation();
+    };
+  }, [fadeAnim, shakeAnim, swipeX, swipeY, streakScale]);
+
   const currentWord = words[currentWordIndex];
 
   const handleIncorrectAnswer = useCallback(() => {
+    if (!currentWord) return;
+
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     setIsError(true);
     Animated.sequence([
@@ -236,11 +255,18 @@ const ThemeGameScreen = () => {
   }, [streak, animateStreakIncrease]);
 
   const handleCorrectAnswer = useCallback(() => {
+    if (!currentWord) return;
+
     setIsSuccess(true);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     setInputText('');
     answerCorrectly({ wordId: currentWord.id });
-    setTimeout(() => {
+
+    if (successTimer.current) {
+      clearTimeout(successTimer.current);
+    }
+
+    successTimer.current = setTimeout(() => {
       setIsSuccess(false);
       handleNextWord();
     }, 600);
@@ -298,6 +324,16 @@ const ThemeGameScreen = () => {
     );
   }
 
+  if (!words.length || !currentWord) {
+    return (
+      <SafeAreaView className="flex-1 items-center justify-center">
+        <Text variant="h2" className="text-center text-gray-600">
+          No words available for this theme
+        </Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
@@ -334,7 +370,7 @@ const ThemeGameScreen = () => {
                       },
                     ]}
                   >
-                    {currentWord.text_en}
+                    {currentWord?.text_en || ''}
                   </Animated.Text>
                 </Animated.View>
                 <TextInput
