@@ -1,5 +1,6 @@
 import * as Haptics from 'expo-haptics';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -22,6 +23,7 @@ import {
 } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '@/components/ui/Text';
+import { useTheme } from '@/contexts/theme-context';
 import { useGameStore } from '@/features/words/wordStore';
 
 const normalizeText = (text: string) => {
@@ -37,7 +39,10 @@ const { width } = Dimensions.get('window');
 const ThemeGameScreen = () => {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const navigation = useNavigation();
+  const router = useRouter();
   const { top } = useSafeAreaInsets();
+  const { isDarkMode } = useTheme();
+
   const {
     words,
     currentWordIndex,
@@ -294,6 +299,15 @@ const ThemeGameScreen = () => {
     };
   }, [startInactivityTimer]);
 
+  const handleClose = useCallback(() => {
+    resetGame();
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/');
+    }
+  }, [router, resetGame]);
+
   const dynamicWordColor = useMemo(
     () =>
       swipeX.interpolate({
@@ -339,6 +353,13 @@ const ThemeGameScreen = () => {
           className="absolute left-0 right-0 flex-row items-center justify-center px-4 z-10"
           style={{ top: top + 10 }}
         >
+          <Pressable
+            onPress={handleClose}
+            className="absolute left-4 bg-black/20 rounded-full p-2 active:scale-90 transition-all duration-100"
+          >
+            <X size={24} color={isDarkMode ? 'white' : 'black'} />
+          </Pressable>
+
           <Animated.View style={{ transform: [{ scale: streakScale }] }}>
             <Text variant="h1" weight="bold" className="text-white" style={{ fontSize: streakFontSize }}>
               🔥 {streak}
