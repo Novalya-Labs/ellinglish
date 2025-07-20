@@ -1,0 +1,24 @@
+---
+alwaysApply: true
+---
+
+# Authentication & Routing
+
+## Authentication Flow
+
+- **Auth Context**: The entire authentication state is managed by `[contexts/auth-context.tsx](mdc:contexts/auth-context.tsx)`. It handles the user session and exposes native sign-in methods (`signInWithGoogle`, `signInWithApple`).
+- **Profile Fetching**: The user's profile data is **NOT** fetched in the auth context. The auth context is only responsible for the authentication session itself.
+- **Layout as a Guard**: The main layout file for the public section, `[app/(public)/_layout.tsx](mdc:app/(public)/_layout.tsx)`, acts as a guard. It is responsible for:
+  1.  Listening for changes in the authentication state (`user` from `useAuth`).
+  2.  Triggering the `getProfile()` action from the `[profileStore](mdc:features/profile/profileStore.ts)`.
+  3.  Redirecting new users to the onboarding screen based on the loaded profile data (e.g., if `username` matches `user_*`).
+
+## Routing
+
+The project uses **Expo Router**.
+- **Public Routes**: All main application routes are within the `(public)` group: `[app/(public)/](mdc:app/(public)/)`.
+- **Dynamic Routes**: We use dynamic routes for screens that depend on a parameter, such as the game screen which depends on the theme slug: `[app/(public)/theme/[slug].tsx](mdc:app/(public)/theme/[slug].tsx)`.
+- **Navigation**: Use the `<Link>` component from `expo-router` for navigation between screens.
+
+alwaysApply: false
+---

@@ -1,0 +1,52 @@
+---
+alwaysApply: true
+---
+
+# Database Interaction & Project Commands
+
+## Supabase
+
+All interactions with the database are handled through **Supabase**.
+
+- **Central Client**: The Supabase client is initialized once in `[lib/supabase.ts](mdc:lib/supabase.ts)` and should be imported from there.
+- **Validation**: For any data mutation (create/update), we use **Zod** to define a schema and validate the payload. This schema should live within the corresponding use-case file. See `[update-profile/updateProfile.ts](mdc:features/profile/update-profile/updateProfile.ts)` for an example.
+- **Complex Queries (RPC)**: To avoid complex `JOIN` queries on the client-side, we use PostgreSQL Functions (RPC) in Supabase. These functions handle the data shaping and translation logic on the server. Examples are `get_localized_themes` and `get_localized_badges`.
+- **Database Types**: The auto-generated types from the Supabase schema are located in `[types/database.types.ts](mdc:types/database.types.ts)`.
+
+## Important Commands
+
+This project uses **pnpm** as its package manager.
+
+- **Generate Database Types**: After any change to the database schema (new tables, functions, etc.), you **MUST** regenerate the TypeScript types by running:
+  ```bash
+  pnpm run generate:types
+  ```
+
+This command ensures that `[types/database.types.ts](mdc:types/database.types.ts)` is synchronized with the remote database schema.
+
+
+This command ensures that `[types/database.types.ts](mdc:types/database.types.ts)` is synchronized with the remote database schema.
+# Database Interaction & Project Commands
+
+## Supabase
+
+All interactions with the database are handled through **Supabase**.
+
+- **Central Client**: The Supabase client is initialized once in `[lib/supabase.ts](mdc:lib/supabase.ts)` and should be imported from there.
+- **Validation**: For any data mutation (create/update), we use **Zod** to define a schema and validate the payload. This schema should live within the corresponding use-case file. See `[update-profile/updateProfile.ts](mdc:features/profile/update-profile/updateProfile.ts)` for an example.
+- **Complex Queries (RPC)**: To avoid complex `JOIN` queries on the client-side, we use PostgreSQL Functions (RPC) in Supabase. These functions handle the data shaping and translation logic on the server. Examples are `get_localized_themes` and `get_localized_badges`.
+- **Database Types**: The auto-generated types from the Supabase schema are located in `[types/database.types.ts](mdc:types/database.types.ts)`.
+
+## Important Commands
+
+This project uses **pnpm** as its package manager.
+
+- **Generate Database Types**: After any change to the database schema (new tables, functions, etc.), you **MUST** regenerate the TypeScript types by running:
+  ```bash
+  pnpm run generate:types
+  ```
+
+This command ensures that `[types/database.types.ts](mdc:types/database.types.ts)` is synchronized with the remote database schema.
+
+
+This command ensures that `[types/database.types.ts](mdc:types/database.types.ts)` is synchronized with the remote database schema.

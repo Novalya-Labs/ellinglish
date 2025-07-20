@@ -1,0 +1,52 @@
+---
+alwaysApply: true
+---
+
+# State Management with Zustand
+
+We use **Zustand** for global state management, following a clear separation of concerns.
+
+## Store vs. Use Case
+
+- **The Store (`*Store.ts`)**: Its only responsibility is to manage state. It defines the state shape, initial state, and actions that modify the state (`set`, `get`). It **NEVER** communicates directly with the database. See `[profileStore.ts](mdc:features/profile/profileStore.ts)` for an example.
+- **The Use Case (`use-case-name/useCaseName.ts`)**: It contains the business logic and database calls (using Supabase). It is called by an action within the store. See `[get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)` for an example.
+
+## Persistance
+
+For state that needs to persist across app sessions (like user profile and settings), we use the `persist` middleware with `AsyncStorage`. See `[profileStore.ts](mdc:features/profile/profileStore.ts)` for the configuration.
+
+## Typing
+
+Every store must be accompanied by a `*Types.ts` file that exports:
+- `FeatureState`: The shape of the state.
+- `FeatureActions`: The signatures of the actions.
+- `FeatureStore`: The combined `FeatureState & FeatureActions` type.
+
+See `[profileType.ts](mdc:features/profile/profileType.ts)` for an example.
+
+
+See `[profileType.ts](mdc:features/profile/profileType.ts)` for an example.
+# State Management with Zustand
+
+We use **Zustand** for global state management, following a clear separation of concerns.
+
+## Store vs. Use Case
+
+- **The Store (`*Store.ts`)**: Its only responsibility is to manage state. It defines the state shape, initial state, and actions that modify the state (`set`, `get`). It **NEVER** communicates directly with the database. See `[profileStore.ts](mdc:features/profile/profileStore.ts)` for an example.
+- **The Use Case (`use-case-name/useCaseName.ts`)**: It contains the business logic and database calls (using Supabase). It is called by an action within the store. See `[get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)` for an example.
+
+## Persistance
+
+For state that needs to persist across app sessions (like user profile and settings), we use the `persist` middleware with `AsyncStorage`. See `[profileStore.ts](mdc:features/profile/profileStore.ts)` for the configuration.
+
+## Typing
+
+Every store must be accompanied by a `*Types.ts` file that exports:
+- `FeatureState`: The shape of the state.
+- `FeatureActions`: The signatures of the actions.
+- `FeatureStore`: The combined `FeatureState & FeatureActions` type.
+
+See `[profileType.ts](mdc:features/profile/profileType.ts)` for an example.
+
+
+See `[profileType.ts](mdc:features/profile/profileType.ts)` for an example.

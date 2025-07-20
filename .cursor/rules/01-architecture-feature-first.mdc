@@ -1,0 +1,48 @@
+---
+alwaysApply: true
+---
+
+# Architecture: Feature-First
+
+This project follows a strict **feature-first** architectural pattern. All business logic is organized by feature, not by file type.
+
+The main directory for all features is `[features/](mdc:features/)`.
+
+## Structure of a Feature
+
+Each business feature (e.g., `profile`, `themes`, `words`) has its own dedicated directory within `[features/](mdc:features/)`. For example, the `profile` feature is located at `[features/profile/](mdc:features/profile/)`.
+
+A typical feature contains:
+- **State Management**: A Zustand store (e.g., `[profileStore.ts](mdc:features/profile/profileStore.ts)`).
+- **Type Definitions**: All related types (e.g., `[profileType.ts](mdc:features/profile/profileType.ts)`).
+- **Use Cases**: Self-contained business logic and database interactions, each in its own sub-directory following the pattern `use-case-name/useCaseName.ts` (e.g., `[features/profile/get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)`).
+
+**Golden Rule**: When adding a new feature, always create a new directory inside `[features/](mdc:features/)` and follow this established structure.
+
+- **State Management**: A Zustand store (e.g., `[profileStore.ts](mdc:features/profile/profileStore.ts)`).
+- **Type Definitions**: All related types (e.g., `[profileType.ts](mdc:features/profile/profileType.ts)`).
+- **Use Cases**: Self-contained business logic and database interactions, each in its own sub-directory following the pattern `use-case-name/useCaseName.ts` (e.g., `[features/profile/get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)`).
+
+**Golden Rule**: When adding a new feature, always create a new directory inside `[features/](mdc:features/)` and follow this established structure.
+# Architecture: Feature-First
+
+This project follows a strict **feature-first** architectural pattern. All business logic is organized by feature, not by file type.
+
+The main directory for all features is `[features/](mdc:features/)`.
+
+## Structure of a Feature
+
+Each business feature (e.g., `profile`, `themes`, `words`) has its own dedicated directory within `[features/](mdc:features/)`. For example, the `profile` feature is located at `[features/profile/](mdc:features/profile/)`.
+
+A typical feature contains:
+- **State Management**: A Zustand store (e.g., `[profileStore.ts](mdc:features/profile/profileStore.ts)`).
+- **Type Definitions**: All related types (e.g., `[profileType.ts](mdc:features/profile/profileType.ts)`).
+- **Use Cases**: Self-contained business logic and database interactions, each in its own sub-directory following the pattern `use-case-name/useCaseName.ts` (e.g., `[features/profile/get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)`).
+
+**Golden Rule**: When adding a new feature, always create a new directory inside `[features/](mdc:features/)` and follow this established structure.
+
+- **State Management**: A Zustand store (e.g., `[profileStore.ts](mdc:features/profile/profileStore.ts)`).
+- **Type Definitions**: All related types (e.g., `[profileType.ts](mdc:features/profile/profileType.ts)`).
+- **Use Cases**: Self-contained business logic and database interactions, each in its own sub-directory following the pattern `use-case-name/useCaseName.ts` (e.g., `[features/profile/get-profile/getProfile.ts](mdc:features/profile/get-profile/getProfile.ts)`).
+
+**Golden Rule**: When adding a new feature, always create a new directory inside `[features/](mdc:features/)` and follow this established structure.
