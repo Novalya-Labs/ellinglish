@@ -380,7 +380,7 @@ const ThemeGameScreen = () => {
                   <Animated.Text
                     style={[
                       {
-                        fontSize: 72,
+                        fontSize: 64,
                         fontFamily: 'DynaPuffBold',
                         textAlign: 'center',
                         lineHeight: 86,
@@ -398,7 +398,7 @@ const ThemeGameScreen = () => {
                   placeholder="Translate..."
                   autoFocus
                   autoCorrect={false}
-                  className="bg-white rounded-full py-4 px-8 mt-8 text-center text-lg w-full max-w-sm"
+                  className="bg-white rounded-full py-4 px-8 mt-8 text-center text-lg w-full max-w-sm leading-snug"
                 />
               </Pressable>
             </Animated.View>
