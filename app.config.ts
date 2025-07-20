@@ -61,13 +61,13 @@ const config: ExpoConfig = {
       },
     ],
     [
-      "@sentry/react-native/expo",
+      '@sentry/react-native/expo',
       {
-        url: "https://sentry.io/",
-        project: "ellinglish",
-        organization: "novalya"
-      }
-    ]
+        url: 'https://sentry.io/',
+        project: 'ellinglish',
+        organization: 'novalya',
+      },
+    ],
   ],
   experiments: {
     typedRoutes: true,

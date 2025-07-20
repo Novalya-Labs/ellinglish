@@ -1,14 +1,14 @@
-import { useTheme } from '@/contexts/theme-context'
-import { MoonIcon, SunIcon } from 'lucide-react-native'
-import { Switch, View } from 'react-native'
-import { type ClassNameValue, twMerge } from 'tailwind-merge'
+import { MoonIcon, SunIcon } from 'lucide-react-native';
+import { Switch, View } from 'react-native';
+import { type ClassNameValue, twMerge } from 'tailwind-merge';
+import { useTheme } from '@/contexts/theme-context';
 
 interface ToggleThemeProps {
-  className?: ClassNameValue
+  className?: ClassNameValue;
 }
 
 const ToggleTheme: React.FC<ToggleThemeProps> = ({ className }) => {
-  const { isDarkMode, setTheme } = useTheme()
+  const { isDarkMode, setTheme } = useTheme();
   return (
     <View className={twMerge('flex-row items-center gap-2', className)}>
       <SunIcon size={18} color={isDarkMode ? '#fbcfe8' : '#581c87'} />
@@ -21,7 +21,7 @@ const ToggleTheme: React.FC<ToggleThemeProps> = ({ className }) => {
       />
       <MoonIcon size={18} color={isDarkMode ? '#fbcfe8' : '#581c87'} />
     </View>
-  )
-}
+  );
+};
 
-export default ToggleTheme
+export default ToggleTheme;

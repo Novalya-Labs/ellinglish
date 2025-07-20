@@ -8,10 +8,10 @@
   },
   "files": {
     "includes": [
-      "packages/**/*.js",
-      "packages/**/*.ts",
-      "packages/**/*.tsx",
-      "packages/**/*.json",
+      "**/*.js",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.json",
       "**/*.jsonc",
       "!**/node_modules/**",
       "!**/dist/**",
@@ -21,15 +21,7 @@
       "!**/coverage/**",
       "!**/.next/**",
       "!**/assets/**",
-      "!packages/mobile/assets/**",
-      "!packages/admin/src/components/ui/**",
-      "!packages/web/src/components/ui/**",
-      "!packages/admin/src/hooks/**",
-      "!packages/web/src/hooks/**",
-      "!packages/*/dist/**",
-      "!yarn.lock",
-      "!**/wrangler.toml",
-      "!packages/mobile/babel.config.js"
+      "!./babel.config.js"
     ]
   },
   "assist": {

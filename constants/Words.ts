@@ -1,7 +1,7 @@
 export interface WordPair {
-  word: string
-  answer: string
-  direction: 'en-fr' | 'fr-en'
+  word: string;
+  answer: string;
+  direction: 'en-fr' | 'fr-en';
 }
 
 export const WORDS: WordPair[] = [
@@ -107,18 +107,18 @@ export const WORDS: WordPair[] = [
   { word: 'Parc', answer: 'Park', direction: 'fr-en' },
   { word: 'Rue', answer: 'Street', direction: 'fr-en' },
   { word: 'Place', answer: 'Square', direction: 'fr-en' },
-  { word: 'Pont', answer: 'Bridge', direction: 'fr-en' }
-]
+  { word: 'Pont', answer: 'Bridge', direction: 'fr-en' },
+];
 
 export const getRandomWord = (): WordPair => {
-  const randomIndex = Math.floor(Math.random() * WORDS.length)
-  return WORDS[randomIndex]
-}
+  const randomIndex = Math.floor(Math.random() * WORDS.length);
+  return WORDS[randomIndex];
+};
 
 export const normalizeText = (text: string): string => {
   return text
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .trim()
-}
+    .trim();
+};

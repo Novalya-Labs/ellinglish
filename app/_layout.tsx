@@ -12,11 +12,11 @@ import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-rean
 import { darkTheme, lightTheme } from '@/constants/Themes';
 import { ThemeProvider, useTheme } from '@/contexts/theme-context';
 import { useProfileStore } from '@/features/profile/profileStore';
-import '../global.css'; 
+import '../global.css';
 import 'react-native-reanimated';
 import * as Sentry from '@sentry/react-native';
 import { version } from '@/package.json';
-import '@/i18n'; 
+import '@/i18n';
 
 Sentry.init({
   dsn: 'https://2e7de021c4f59649f6ecb856721167e1@o4509637018189824.ingest.de.sentry.io/4509697546780752',
