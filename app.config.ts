@@ -31,11 +31,6 @@ const config: ExpoConfig = {
     },
     package: 'com.ellinglish.app',
   },
-  web: {
-    bundler: 'metro',
-    output: 'static',
-    favicon: './assets/images/favicon.png',
-  },
   plugins: [
     'expo-router',
     'expo-web-browser',
