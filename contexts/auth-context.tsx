@@ -8,8 +8,8 @@ import { useProfileStore } from '@/features/profile/profileStore';
 import { supabase } from '@/lib/supabase';
 
 GoogleSignin.configure({
-  webClientId: Env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
-  iosClientId: Env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
+  webClientId: Env.GOOGLE_WEB_CLIENT_ID,
+  iosClientId: Env.GOOGLE_IOS_CLIENT_ID,
   scopes: ['profile', 'email'],
 });
 

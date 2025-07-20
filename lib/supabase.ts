@@ -29,7 +29,7 @@ class SupabaseStorage {
   }
 }
 
-export const supabase = createClient<Database>(Env.EXPO_PUBLIC_SUPABASE_URL, Env.EXPO_PUBLIC_SUPABASE_ANON_KEY, {
+export const supabase = createClient<Database>(Env.SUPABASE_URL, Env.SUPABASE_ANON_KEY, {
   auth: {
     storage: new SupabaseStorage(),
     autoRefreshToken: true,
