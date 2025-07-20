@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { Env } from '@/constants/Env';
+import { getAvatars } from './get-avatars/getAvatars';
 import { getBadges } from './get-badges/getBadges';
 import { getProfile } from './get-profile/getProfile';
 import type { ProfileState, ProfileStore } from './profileType';
@@ -49,6 +50,11 @@ export const useProfileStore = create<ProfileStore>()(
             },
           });
         }
+      },
+
+      getAvatars: async () => {
+        const avatars = await getAvatars();
+        return avatars;
       },
 
       setTheme: (theme) => {

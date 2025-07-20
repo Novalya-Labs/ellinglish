@@ -3,18 +3,26 @@ import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 import { Image, Platform, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import ToggleTheme from '@/components/toggle-theme';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/auth-context';
 
 const MainScreen: React.FC = () => {
-  const { top } = useSafeAreaInsets();
   const { user, signInWithGoogle, signInWithApple } = useAuth();
+  const { top } = useSafeAreaInsets();
 
   return (
     <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
-      <View className="absolute right-4" style={{ top: top + 16 }}>
-        <ToggleTheme />
+      <View className="absolute right-4 z-10" style={{ top: top + 16 }}>
+        {user && (
+          <Link href="/(public)/profile" asChild>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)}
+            >
+              <Ionicons name="person-circle-outline" size={32} color="white" />
+            </TouchableOpacity>
+          </Link>
+        )}
       </View>
       <View className="flex-1 items-center justify-center">
         <Text variant="h1" weight="bold" className="text-7xl text-white leading-snug">

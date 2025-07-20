@@ -1,13 +1,14 @@
 import { supabase } from '@/lib/supabase';
 import type { Profile } from '../profileType';
 
+// No user parameter needed here
 export const getProfile = async (): Promise<Profile | null> => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user?.id) {
-    throw new Error('User not found');
+  if (!user) {
+    return null;
   }
 
   const { data, error } = await supabase
@@ -39,6 +40,6 @@ export const getProfile = async (): Promise<Profile | null> => {
   return {
     ...rest,
     avatar_url: avatar.url,
-    badges: [], // Les badges sont chargés séparément
+    badges: [], // Badges are loaded separately
   };
 };
