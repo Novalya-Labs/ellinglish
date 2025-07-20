@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { LockIcon, LogOutIcon } from 'lucide-react-native';
 import { useCallback, useEffect } from 'react';
 import { Alert, FlatList, Image, SafeAreaView, TouchableOpacity, View } from 'react-native';
@@ -8,6 +9,7 @@ import { useTheme } from '@/contexts/theme-context';
 import { useProfileStore } from '@/features/profile/profileStore';
 
 const ProfileScreen = () => {
+  const router = useRouter();
   const { signOut } = useAuth();
   const { profile, getBadges } = useProfileStore();
   const { isDarkMode } = useTheme();
@@ -19,9 +21,16 @@ const ProfileScreen = () => {
   const handleSignOut = useCallback(() => {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Sign Out', style: 'destructive', onPress: () => signOut() },
+      {
+        text: 'Sign Out',
+        style: 'destructive',
+        onPress: () => {
+          signOut();
+          router.replace('/');
+        },
+      },
     ]);
-  }, [signOut]);
+  }, [signOut, router]);
 
   return (
     <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900">
