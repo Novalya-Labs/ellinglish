@@ -24,6 +24,7 @@ Sentry.init({
   dsn: Env.SENTRY_DSN,
   sendDefaultPii: true,
   release: version,
+  environment: Env.MODE,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1,
   integrations: [Sentry.mobileReplayIntegration()],
