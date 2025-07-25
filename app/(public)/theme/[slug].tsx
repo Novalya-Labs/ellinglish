@@ -398,6 +398,7 @@ const ThemeGameScreen = () => {
                   placeholder="Translate..."
                   autoFocus
                   autoCorrect={false}
+                  placeholderTextColor="gray"
                   className="bg-white rounded-full py-4 px-8 mt-8 text-center text-lg w-full max-w-sm leading-snug"
                 />
               </Pressable>
