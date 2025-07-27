@@ -1,10 +1,17 @@
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, Pressable, SafeAreaView, TextInput, View } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, {
+  interpolateColor,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '@/components/ui/Text';
 import { useTheme } from '@/contexts/theme-context';
@@ -41,6 +48,22 @@ const ThemeGameScreen = () => {
   const [inputText, setInputText] = useState('');
   const wordTranslationX = useSharedValue(0);
   const wordTranslationY = useSharedValue(0);
+  const wordColorState = useSharedValue(0);
+  const inactivityTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetInactivityTimer = useCallback(() => {
+    if (inactivityTimerRef.current) {
+      clearTimeout(inactivityTimerRef.current);
+    }
+
+    inactivityTimerRef.current = setTimeout(() => {
+      wordTranslationX.value = withTiming(-30, { duration: 1000 }, () => {
+        wordTranslationX.value = withSpring(0, { duration: 1000 });
+      });
+
+      runOnJS(resetInactivityTimer)();
+    }, 8000);
+  }, [wordTranslationX]);
 
   useEffect(() => {
     if (slug && typeof slug === 'string') {
@@ -49,21 +72,41 @@ const ThemeGameScreen = () => {
   }, [slug, fetchWords]);
 
   useEffect(() => {
+    resetInactivityTimer();
+
+    return () => {
+      if (inactivityTimerRef.current) {
+        clearTimeout(inactivityTimerRef.current);
+      }
+    };
+  }, [resetInactivityTimer]);
+
+  useEffect(() => {
     if (inputText.length > 0) {
+      resetInactivityTimer();
+
       const normalizedInput = normalizeText(inputText);
       const normalizedWord = normalizeText(currentWord?.text_fr || '');
 
       if (normalizedWord.length === normalizedInput.length) {
         if (normalizedInput === normalizedWord) {
-          answerCorrectly({ wordId: currentWord.id });
+          wordColorState.value = withTiming(1, { duration: 200 });
+          setTimeout(() => {
+            answerCorrectly({ wordId: currentWord.id });
+            wordColorState.value = withTiming(0, { duration: 200 });
+          }, 1000);
         } else {
+          wordColorState.value = withTiming(-1, { duration: 200 });
+          setTimeout(() => {
+            wordColorState.value = withTiming(0, { duration: 200 });
+          }, 2000);
           answerIncorrectly({ wordId: currentWord.id });
         }
 
         setInputText('');
       }
     }
-  }, [inputText, currentWord, answerCorrectly, answerIncorrectly]);
+  }, [inputText, currentWord, answerCorrectly, answerIncorrectly, resetInactivityTimer, wordColorState]);
 
   useEffect(() => {
     let timeout: number | null = null;
@@ -106,6 +149,8 @@ const ThemeGameScreen = () => {
 
   const panGesture = Gesture.Pan()
     .onUpdate((event) => {
+      runOnJS(resetInactivityTimer)();
+
       wordTranslationX.value = event.translationX;
       wordTranslationY.value = event.translationY;
 
@@ -126,9 +171,30 @@ const ThemeGameScreen = () => {
       runOnJS(setIsSkipping)(false);
     });
 
-  const wordViewStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: wordTranslationX.value }, { translateY: wordTranslationY.value }],
-  }));
+  const wordViewStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: wordTranslationX.value }, { translateY: wordTranslationY.value }],
+    };
+  }, [wordTranslationX, wordTranslationY]);
+
+  const wordColorStyle = useAnimatedStyle(() => {
+    let color: string;
+
+    if (wordColorState.value === 1) {
+      color = '#22c55e'; // green-500
+    } else if (wordColorState.value === -1) {
+      color = '#ef4444'; // red-500
+    } else {
+      const normalColor = isDarkMode ? '#ffffff' : '#000000';
+      const redColor = '#ff0000'; // flashy red
+
+      color = interpolateColor(wordTranslationX.value, [0, -150], [normalColor, redColor]);
+    }
+
+    return {
+      color,
+    };
+  }, [isDarkMode, wordColorState, wordTranslationX]);
 
   if (loading) {
     return (
@@ -161,12 +227,12 @@ const ThemeGameScreen = () => {
         >
           <Pressable
             onPress={handleClose}
-            className="absolute left-4 bg-black/20 rounded-full p-2 active:scale-90 transition-all duration-100"
+            className="absolute left-4 bg-black/20 rounded-full p-2 active:scale-90 transition-all duration-100 z-10"
           >
             <X size={24} color={isDarkMode ? 'white' : 'black'} />
           </Pressable>
 
-          <Animated.View>
+          <Animated.View className="absolute left-0 right-0 flex-row items-center justify-center">
             <Animated.Text style={streakFontSizeAnimation}>🔥 {streak}</Animated.Text>
           </Animated.View>
         </View>
@@ -175,9 +241,10 @@ const ThemeGameScreen = () => {
           <View className="flex-1 items-center justify-center">
             <GestureDetector gesture={panGesture}>
               <Animated.View style={wordViewStyle}>
-                <Text
+                <Animated.Text
                   adjustsFontSizeToFit
                   style={[
+                    wordColorStyle,
                     {
                       fontSize: 64,
                       fontFamily: 'DynaPuffBold',
@@ -188,7 +255,7 @@ const ThemeGameScreen = () => {
                   ]}
                 >
                   {currentWord?.text_en || ''}
-                </Text>
+                </Animated.Text>
               </Animated.View>
             </GestureDetector>
             <TextInput
