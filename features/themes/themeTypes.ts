@@ -3,6 +3,7 @@ export type Theme = {
   slug: string;
   name: string;
   required_mastery_level: number;
+  progress: number;
 };
 
 export type ThemeState = {

@@ -317,6 +317,7 @@ export type Database = {
           slug: string
           name: string
           required_mastery_level: number
+          progress: number
         }[]
       }
     }
