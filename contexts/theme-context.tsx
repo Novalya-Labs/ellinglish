@@ -19,7 +19,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const isDarkMode = theme === 'DARK' || (theme === 'SYSTEM' && colorScheme === 'dark');
 
   useEffect(() => {
-    setColorScheme(theme === 'LIGHT' ? 'light' : theme === 'DARK' ? 'dark' : 'system');
+    setColorScheme(theme === 'LIGHT' ? 'dark' : theme === 'DARK' ? 'dark' : 'dark');
   }, [theme, setColorScheme]);
 
   return <ThemeContext.Provider value={{ isDarkMode }}>{children}</ThemeContext.Provider>;

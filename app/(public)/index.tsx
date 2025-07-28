@@ -1,16 +1,44 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
+import { useEffect } from 'react';
 import { Image, Platform, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import Animated, {
+  Easing,
+  FadeInUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Text from '@/components/ui/Text';
+import { Env } from '@/constants/Env';
 import { useAuth } from '@/contexts/auth-context';
 import { useTheme } from '@/contexts/theme-context';
+
+const AnimatedFlower = Animated.createAnimatedComponent(Image);
 
 const MainScreen: React.FC = () => {
   const { user, signInWithGoogle, signInWithApple } = useAuth();
   const { top } = useSafeAreaInsets();
   const { isDarkMode } = useTheme();
+
+  const rotation = useSharedValue(0);
+
+  useEffect(() => {
+    rotation.value = withRepeat(withTiming(360, { duration: 4000, easing: Easing.linear }), -1, false);
+  }, [rotation]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          rotate: `${rotation.value}deg`,
+        },
+      ],
+    };
+  });
 
   return (
     <SafeAreaView className="flex-1 bg-pink-200 dark:bg-purple-900 relative">
@@ -27,13 +55,36 @@ const MainScreen: React.FC = () => {
         )}
       </View>
       <View className="flex-1 items-center justify-center">
-        <Text variant="h1" weight="bold" className="text-7xl text-white leading-snug">
-          Ellinglish
-        </Text>
+        <Animated.View className="flex-row">
+          {Env.APP_NAME.split('').map((word, index) => {
+            return (
+              <Animated.Text
+                key={`${word}-${index}`}
+                entering={FadeInUp.delay(100 * index)}
+                className="text-7xl text-white leading-snug"
+                style={{ fontFamily: 'DynaPuffBold' }}
+              >
+                {word}
+              </Animated.Text>
+            );
+          })}
+        </Animated.View>
         <View className="flex-row gap-4 mt-4 mb-8">
-          <Image source={require('@/assets/images/flowers/green_flower.png')} className="size-8" />
-          <Image source={require('@/assets/images/flowers/lila_flower.png')} className="size-8" />
-          <Image source={require('@/assets/images/flowers/yellow_flower.png')} className="size-8" />
+          <AnimatedFlower
+            source={require('@/assets/images/flowers/green_flower.png')}
+            className="size-8"
+            style={animatedStyle}
+          />
+          <AnimatedFlower
+            source={require('@/assets/images/flowers/lila_flower.png')}
+            className="size-8"
+            style={animatedStyle}
+          />
+          <AnimatedFlower
+            source={require('@/assets/images/flowers/yellow_flower.png')}
+            className="size-8"
+            style={animatedStyle}
+          />
         </View>
 
         {user ? (
