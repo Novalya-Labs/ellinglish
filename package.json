@@ -3,7 +3,7 @@
   "private": true,
   "description": "A mobile app for the Ellinglish project",
   "main": "index.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "start": "expo start -c",
     "android": "expo run:android",
