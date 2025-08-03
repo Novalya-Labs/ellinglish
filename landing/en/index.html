@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellinglish - Learn English the Fun Way</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'dynapuff': ['DynaPuff', 'cursive'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'purple': {
+                            '900': '#4C1D95',
+                            '800': '#5B21B6',
+                            '700': '#6D28D9',
+                            '600': '#7C3AED',
+                            '500': '#8B5CF6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/en" class="font-dynapuff text-2xl font-bold text-white">Ellinglish</a>
+                    <div class="ml-4 flex space-x-2">
+                        <span class="text-2xl">🌸</span>
+                        <span class="text-2xl">🌼</span>
+                        <span class="text-2xl">🌻</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="/fr" class="text-white/80 hover:text-white font-medium">Français</a>
+                    <a href="/en/contact.html" class="text-white/80 hover:text-white font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="font-dynapuff text-5xl md:text-7xl font-bold text-white mb-6">
+                Ellinglish
+            </h1>
+            <div class="flex justify-center space-x-4 mb-8">
+                <span class="text-4xl">🌸</span>
+                <span class="text-4xl">🌼</span>
+                <span class="text-4xl">🌻</span>
+            </div>
+            <p class="text-xl md:text-2xl text-white/90 mb-8 font-medium">
+                Learn English the fun way with interactive games and challenges
+            </p>
+            <p class="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
+                Master vocabulary, unlock achievements, and progress through engaging themes. 
+                Perfect for beginners and intermediate learners who want to make English learning enjoyable.
+            </p>
+            
+            <!-- App Store Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button class="bg-white text-purple-800 font-semibold py-4 px-8 rounded-full flex items-center justify-center space-x-3 hover:bg-gray-100 transition-colors shadow-lg">
+                    <span class="text-2xl">🍎</span>
+                    <div class="text-left">
+                        <div class="text-xs opacity-80">Download on the</div>
+                        <div class="text-lg font-bold">App Store</div>
+                    </div>
+                </button>
+                <button class="bg-white text-purple-800 font-semibold py-4 px-8 rounded-full flex items-center justify-center space-x-3 hover:bg-gray-100 transition-colors shadow-lg">
+                    <span class="text-2xl">🤖</span>
+                    <div class="text-left">
+                        <div class="text-xs opacity-80">Get it on</div>
+                        <div class="text-lg font-bold">Google Play</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Screenshots -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                Experience the App
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+                <!-- Game Screen -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 max-w-sm transform hover:scale-105 transition-transform">
+                    <div class="bg-gradient-to-b from-purple-600 to-purple-800 rounded-2xl aspect-[9/19] flex flex-col items-center justify-center text-white p-6">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-dynapuff mb-4">cheese</h3>
+                            <div class="bg-white/20 rounded-full px-6 py-2">
+                                <span class="text-gray-300">Translate...</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-4xl">🎮</span>
+                            <p class="text-white font-dynapuff mt-2">Interactive Translation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Screen -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 max-w-sm transform hover:scale-105 transition-transform">
+                    <div class="bg-gradient-to-b from-purple-600 to-purple-800 rounded-2xl aspect-[9/19] flex flex-col items-center justify-center text-white p-6">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-dynapuff mb-2">Profile</h3>
+                            <p class="text-sm opacity-80">enzo@ellinglish.com</p>
+                        </div>
+                        <div class="space-y-4 w-full">
+                            <div class="bg-white/20 rounded-xl p-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🐣</span>
+                                    <div>
+                                        <div class="font-bold">Beginner</div>
+                                        <div class="text-xs opacity-80">First word learned!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white/20 rounded-xl p-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🧠</span>
+                                    <div>
+                                        <div class="font-bold">Learner</div>
+                                        <div class="text-xs opacity-80">10 words mastered!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Welcome Screen -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 max-w-sm transform hover:scale-105 transition-transform">
+                    <div class="bg-gradient-to-b from-purple-600 to-purple-800 rounded-2xl aspect-[9/19] flex flex-col items-center justify-center text-white p-6">
+                        <div class="text-center mb-8">
+                            <h3 class="text-3xl font-dynapuff mb-4">Ellinglish</h3>
+                            <div class="flex justify-center space-x-2 mb-8">
+                                <span class="text-3xl">🌸</span>
+                                <span class="text-3xl">🌼</span>
+                                <span class="text-3xl">🌻</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 w-full">
+                            <button class="bg-white text-purple-800 rounded-full py-3 px-6 w-full font-medium">
+                                Sign in with Google
+                            </button>
+                            <button class="bg-white text-purple-800 rounded-full py-3 px-6 w-full font-medium">
+                                Sign in with Apple
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                Why Choose Ellinglish?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">🎯</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Interactive Learning</h3>
+                    <p class="text-white/80">Learn through games and interactive challenges that make vocabulary stick</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">🏆</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Achievement System</h3>
+                    <p class="text-white/80">Unlock badges and track your progress as you master new words</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">🌈</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Themed Content</h3>
+                    <p class="text-white/80">Explore different topics and themes to expand your vocabulary naturally</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">📱</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Mobile First</h3>
+                    <p class="text-white/80">Learn anywhere, anytime with our beautifully designed mobile app</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">🌟</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Personalized</h3>
+                    <p class="text-white/80">Adapt to your learning pace with personalized difficulty levels</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors">
+                    <span class="text-5xl mb-4 block">🎵</span>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Audio Support</h3>
+                    <p class="text-white/80">Coming Soon - Native speaker audio for pronunciation practice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                How It Works
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-3xl">1️⃣</span>
+                    </div>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Choose Your Theme</h3>
+                    <p class="text-white/80">Pick from various themes like food, animals, travel, and more to learn vocabulary that interests you</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-3xl">2️⃣</span>
+                    </div>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Play & Learn</h3>
+                    <p class="text-white/80">Engage with interactive games and translation challenges to master new words naturally</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-3xl">3️⃣</span>
+                    </div>
+                    <h3 class="font-dynapuff text-xl font-bold text-white mb-3">Track Progress</h3>
+                    <p class="text-white/80">Unlock achievements, earn badges, and watch your vocabulary grow with our progress system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                Frequently Asked Questions
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">When will Ellinglish be available?</h3>
+                    <p class="text-white/80">We're currently in development and plan to launch on both iOS and Android platforms soon. Sign up for updates to be notified when we launch!</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">Is Ellinglish free to use?</h3>
+                    <p class="text-white/80">We're designing Ellinglish to be accessible to everyone. Details about pricing will be announced closer to launch.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">What makes Ellinglish different?</h3>
+                    <p class="text-white/80">Ellinglish focuses on making English learning fun and interactive through games, achievements, and themed content that keeps you engaged while learning naturally.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">Can I use Ellinglish offline?</h3>
+                    <p class="text-white/80">We're exploring offline capabilities to ensure you can continue learning even without an internet connection. Stay tuned for updates!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to Start Your English Journey?
+            </h2>
+            <p class="text-xl text-white/90 mb-8">
+                Join thousands of learners who are already improving their English with Ellinglish
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button class="bg-white text-purple-800 font-semibold py-4 px-8 rounded-full flex items-center justify-center space-x-3 hover:bg-gray-100 transition-colors shadow-lg">
+                    <span class="text-2xl">🍎</span>
+                    <div class="text-left">
+                        <div class="text-xs opacity-80">Download on the</div>
+                        <div class="text-lg font-bold">App Store</div>
+                    </div>
+                </button>
+                <button class="bg-white text-purple-800 font-semibold py-4 px-8 rounded-full flex items-center justify-center space-x-3 hover:bg-gray-100 transition-colors shadow-lg">
+                    <span class="text-2xl">🤖</span>
+                    <div class="text-left">
+                        <div class="text-xs opacity-80">Get it on</div>
+                        <div class="text-lg font-bold">Google Play</div>
+                    </div>
+                </button>
+            </div>
+            <p class="text-white/60 text-sm">Coming soon to App Store and Google Play</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-dynapuff text-2xl font-bold text-white mb-2">Ellinglish</h3>
+                    <p class="text-white/60">Learn English the fun way</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="/en/contact.html" class="text-white/80 hover:text-white transition-colors">Contact</a>
+                    <a href="/fr" class="text-white/80 hover:text-white transition-colors">Français</a>
+                    <a href="mailto:contact@ellinglish.com" class="text-white/80 hover:text-white transition-colors">Email</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/20 text-center">
+                <p class="text-white/60">&copy; 2024 Ellinglish. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

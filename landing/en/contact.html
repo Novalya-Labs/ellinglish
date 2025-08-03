@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ellinglish</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'dynapuff': ['DynaPuff', 'cursive'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'purple': {
+                            '900': '#4C1D95',
+                            '800': '#5B21B6',
+                            '700': '#6D28D9',
+                            '600': '#7C3AED',
+                            '500': '#8B5CF6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/en" class="font-dynapuff text-2xl font-bold text-white">Ellinglish</a>
+                    <div class="ml-4 flex space-x-2">
+                        <span class="text-2xl">🌸</span>
+                        <span class="text-2xl">🌼</span>
+                        <span class="text-2xl">🌻</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="/fr/contact.html" class="text-white/80 hover:text-white font-medium">Français</a>
+                    <a href="/en" class="text-white/80 hover:text-white font-medium">Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="font-dynapuff text-4xl md:text-5xl font-bold text-white mb-6">
+                    Get in Touch
+                </h1>
+                <p class="text-xl text-white/90">
+                    Have questions about Ellinglish? We'd love to hear from you!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                        <h2 class="font-dynapuff text-2xl font-bold text-white mb-6">Contact Information</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 rounded-full p-3">
+                                    <span class="text-2xl">📧</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">Email</h3>
+                                    <a href="mailto:contact@ellinglish.com" class="text-white/80 hover:text-white transition-colors">contact@ellinglish.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 rounded-full p-3">
+                                    <span class="text-2xl">🌐</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">Website</h3>
+                                    <p class="text-white/80">ellinglish.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 rounded-full p-3">
+                                    <span class="text-2xl">📱</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold mb-1">App Status</h3>
+                                    <p class="text-white/80">Coming soon to iOS and Android</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                        <h3 class="font-dynapuff text-xl font-bold text-white mb-4">Follow Our Journey</h3>
+                        <p class="text-white/80 mb-4">
+                            Stay updated on Ellinglish development and be the first to know when we launch!
+                        </p>
+                        <div class="flex space-x-4">
+                            <span class="text-3xl">🚀</span>
+                            <span class="text-3xl">📚</span>
+                            <span class="text-3xl">🎯</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <h2 class="font-dynapuff text-2xl font-bold text-white mb-6">Send us a Message</h2>
+                    
+                    <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <div>
+                            <label for="email" class="block text-white font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-colors"
+                                   placeholder="your@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-white font-medium mb-2">Subject</label>
+                            <select id="subject" name="subject" required 
+                                    class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-colors">
+                                <option value="" class="bg-purple-800">Choose a subject</option>
+                                <option value="general" class="bg-purple-800">General Inquiry</option>
+                                <option value="feedback" class="bg-purple-800">Feedback</option>
+                                <option value="partnership" class="bg-purple-800">Partnership</option>
+                                <option value="press" class="bg-purple-800">Press Inquiry</option>
+                                <option value="support" class="bg-purple-800">Technical Support</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-white font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-colors resize-none"
+                                      placeholder="Tell us about your question or feedback..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-white text-purple-800 font-semibold py-4 px-6 rounded-lg hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center space-x-2">
+                            <span class="text-xl">📤</span>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-dynapuff text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                Frequently Asked Questions
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">When will Ellinglish be available?</h3>
+                    <p class="text-white/80">We're currently in development and plan to launch on both iOS and Android platforms soon. Sign up for updates to be notified when we launch!</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">Is Ellinglish free to use?</h3>
+                    <p class="text-white/80">We're designing Ellinglish to be accessible to everyone. Details about pricing will be announced closer to launch.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">What makes Ellinglish different?</h3>
+                    <p class="text-white/80">Ellinglish focuses on making English learning fun and interactive through games, achievements, and themed content that keeps you engaged while learning naturally.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-dynapuff text-lg font-bold text-white mb-3">Can I use Ellinglish offline?</h3>
+                    <p class="text-white/80">We're exploring offline capabilities to ensure you can continue learning even without an internet connection. Stay tuned for updates!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-dynapuff text-2xl font-bold text-white mb-2">Ellinglish</h3>
+                    <p class="text-white/60">Learn English the fun way</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="/en" class="text-white/80 hover:text-white transition-colors">Home</a>
+                    <a href="/fr/contact.html" class="text-white/80 hover:text-white transition-colors">Français</a>
+                    <a href="mailto:contact@ellinglish.com" class="text-white/80 hover:text-white transition-colors">Email</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/20 text-center">
+                <p class="text-white/60">&copy; 2024 Ellinglish. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link
+            const subjectLine = `Ellinglish Contact: ${subject}`;
+            const body = `From: ${email}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:contact@ellinglish.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Opening your email client. If it doesn\'t open automatically, please send an email to contact@ellinglish.com');
+        }
+    </script>
+</body>
+</html>

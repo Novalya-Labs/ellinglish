@@ -1,0 +1,21 @@
+{
+  "name": "ellinglish-landing",
+  "version": "1.0.0",
+  "description": "Landing page for Ellinglish - Learn English the fun way",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000",
+    "build": "echo 'Static site ready for deployment'",
+    "preview": "npx serve . -p 8080"
+  },
+  "keywords": [
+    "ellinglish",
+    "english",
+    "learning",
+    "app",
+    "landing"
+  ],
+  "author": "Ellinglish Team",
+  "license": "MIT"
+}
