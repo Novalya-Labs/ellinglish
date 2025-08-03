@@ -1,0 +1,58 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'landing/**'
+      - '.github/workflows/deploy-cloudflare-pages.yml'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Cloudflare Pages
+    
+    steps:
+      - name: 🏗️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'landing/package-lock.json'
+
+      - name: 📥 Install dependencies
+        run: |
+          cd landing
+          npm ci --prefer-offline --no-audit
+
+      - name: 🔍 Verify files
+        run: |
+          echo "📁 Landing directory contents:"
+          ls -la landing/
+          echo ""
+          echo "🌐 Checking main pages exist:"
+          test -f landing/index.html && echo "✅ Root redirect page exists"
+          test -f landing/en/index.html && echo "✅ English homepage exists"
+          test -f landing/fr/index.html && echo "✅ French homepage exists"
+          test -f landing/en/privacy-policy.html && echo "✅ English privacy policy exists"
+          test -f landing/fr/politique-confidentialite.html && echo "✅ French privacy policy exists"
+
+      - name: 🏗️ Build (optional step)
+        run: |
+          cd landing
+          npm run build || echo "ℹ️ No build step needed for static site"
+
+      - name: 🚀 Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ellinglish-landing
+          directory: landing

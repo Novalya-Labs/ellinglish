@@ -9,10 +9,14 @@ landing/
 ├── index.html          # Root redirect page
 ├── en/
 │   ├── index.html      # English homepage
-│   └── contact.html    # English contact page
+│   ├── contact.html    # English contact page
+│   ├── legal-notice.html    # English legal notice
+│   └── privacy-policy.html  # English privacy policy
 ├── fr/
 │   ├── index.html      # French homepage
-│   └── contact.html    # French contact page
+│   ├── contact.html    # French contact page
+│   ├── mentions-legales.html # French legal notice  
+│   └── politique-confidentialite.html # French privacy policy
 ├── public/
 │   ├── images/         # Landing page assets
 │   └── screenshots/    # App screenshots
@@ -30,6 +34,8 @@ landing/
 - **Interactive contact form** with mailto functionality
 - **App store buttons** (ready for real links)
 - **Screenshots placeholders** for app showcase
+- **Complete legal pages** (Privacy Policy & Legal Notice)
+- **GDPR & App Store compliant** documentation
 
 ## Design Elements
 
@@ -91,3 +97,37 @@ The contact form uses `mailto:` links to open the user's email client. For produ
 - Fonts: Modify the Google Fonts imports
 - Content: Edit the text in both language versions
 - Images: Replace placeholders with real assets
+
+## 🎯 Next Steps
+
+1. **Add real screenshots** to `public/screenshots/` folder
+2. **Replace app store buttons** with real download links when ready
+3. **Complete company address** in legal pages
+4. **Test the contact form** 
+5. **Deploy to Cloudflare Pages**
+
+## 📋 Legal Compliance
+
+The landing page includes comprehensive legal pages that meet requirements for:
+
+### **App Store Requirements:**
+- ✅ **Privacy Policy URL** (required by Apple & Google)
+- ✅ **Data collection disclosure** 
+- ✅ **Third-party services documentation**
+- ✅ **User rights information**
+
+### **CNIL (French DPA) Compliance:**
+- ✅ **GDPR Article 13/14** information requirements
+- ✅ **Legal basis** for each processing purpose
+- ✅ **Data retention periods**
+- ✅ **User rights** (access, rectification, erasure, etc.)
+- ✅ **Data transfer** safeguards documentation
+- ✅ **No cookies** without consent
+- ✅ **Minors protection** measures
+
+### **Content:**
+- **French pages:** `/fr/mentions-legales.html` & `/fr/politique-confidentialite.html`
+- **English pages:** `/en/legal-notice.html` & `/en/privacy-policy.html`
+- **Company:** NOVALYA (SIRET: 945 399 269 00012)
+- **Data collected:** Only contact form email + technical data for app functioning
+- **No tracking:** No advertising cookies or marketing trackers
